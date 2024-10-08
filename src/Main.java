@@ -13,11 +13,11 @@ import java.util.Scanner;
  * The {@code Main} class contains the main entry point of the program.
  * 
  * <p>It is responsible for invoking the {@code generateInfoFiles} method of the {@code GenerateInfoFiles}
- * class to create the necessary test files.</p>
+ * class to create the necessary test files and generate sales reports.</p>
  */
 public class Main {
-	
-	/** Path to the vendor information file. */
+
+    /** Path to the vendor information file. */
     private static final String SALES_MEN_FILE = "files/salesmen_info.csv";
 
     /** Path to the product information file. */
@@ -25,21 +25,20 @@ public class Main {
 
     /** Prefix for sales information files. */
     private static final String SALES_INFO_FILE = "files/sales_";
-	
-	/** Path for the product sales report file. */
+
+    /** Path for the product sales report file. */
     private static final String PRODUCT_SALES_REPORT_FILE = "files/product_sales.csv";
 
     /** Path for the vendor sales report file. */
     private static final String VENDOR_SALES_REPORT_FILE = "files/vendor_sales.csv";
 
     /**
-     * Main method that executes the generation of test files.
+     * Main method that executes the generation of test files and reports.
      * 
      * <p>Handles any {@code IOException} that may occur during the process of generating files.</p>
-     * 
      */
     public static void main(String[] args) {
-        
+
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
 
@@ -61,13 +60,13 @@ public class Main {
                     }
                     break;
                 case 2:
-                	try {
-                		// Generate sales reports after creating necessary files
+                    try {
+                        // Generate sales reports after creating necessary files
                         createVendorSalesReport(); // Creates a report of vendor sales
                         createProductSalesReport(); // Creates a report of product sales
-                        System.out.println("Files generated successfully.");
+                        System.out.println("Reports generated successfully.");
                     } catch (IOException e) {
-                        System.out.println("Error generating files: " + e.getMessage());
+                        System.out.println("Error generating reports: " + e.getMessage());
                     }
                     break;
                 case 3:
@@ -80,7 +79,7 @@ public class Main {
         }
         scanner.close();
     }
-    
+
     /**
      * Creates a report of vendor sales, ordered by the amount of money collected.
      * 
@@ -90,11 +89,13 @@ public class Main {
         Map<String, Integer> vendorSales = new HashMap<>();
         List<String> salesMenLines = Files.readAllLines(Paths.get(SALES_MEN_FILE));
 
+        // Iterate through each salesman to calculate total sales
         for (String salesManLine : salesMenLines) {
             String[] salesManParts = salesManLine.split(";");
             String documentNumber = salesManParts[1];
             int totalSales = 0;
 
+            // Read sales data for the current salesman
             List<String> salesLines = Files.readAllLines(Paths.get(SALES_INFO_FILE + documentNumber + ".csv"));
             for (String salesLine : salesLines.subList(1, salesLines.size())) { // Skip header
                 String[] productParts = salesLine.split(";");
@@ -110,9 +111,10 @@ public class Main {
         List<Map.Entry<String, Integer>> sortedSales = new ArrayList<>(vendorSales.entrySet());
         sortedSales.sort((e1, e2) -> Double.compare(e2.getValue(), e1.getValue()));
 
+        // Write the vendor sales report to a file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(VENDOR_SALES_REPORT_FILE))) {
             for (Map.Entry<String, Integer> entry : sortedSales) {
-                writer.write( entry.getKey() + ";" + entry.getValue() + "\n");
+                writer.write(entry.getKey() + ";" + entry.getValue() + "\n");
             }
         }
     }
@@ -126,12 +128,14 @@ public class Main {
         Map<String, Integer> productSales = new HashMap<>();
         List<String> productsLines = Files.readAllLines(Paths.get(PRODUCTS_FILE));
 
+        // Initialize sales count for each product
         for (String productLine : productsLines) {
             String[] productParts = productLine.split(";");
             productSales.put(productParts[0], 0); // Initialize sales count
         }
 
         List<String> salesMenLines = Files.readAllLines(Paths.get(SALES_MEN_FILE));
+        // Calculate total quantity sold for each product
         for (String salesManLine : salesMenLines) {
             String documentNumber = salesManLine.split(";")[1];
             List<String> salesLines = Files.readAllLines(Paths.get(SALES_INFO_FILE + documentNumber + ".csv"));
@@ -146,11 +150,13 @@ public class Main {
         List<Map.Entry<String, Integer>> sortedProducts = new ArrayList<>(productSales.entrySet());
         sortedProducts.sort((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()));
 
+        // Write the product sales report to a file, including product names
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(PRODUCT_SALES_REPORT_FILE))) {
             for (Map.Entry<String, Integer> entry : sortedProducts) {
                 String productId = entry.getKey();
                 int price = getProductPrice(productId);
-                writer.write(productId + ";" + price + ";" + entry.getValue() + "\n");
+                String productName = getProductName(productId);
+                writer.write(productName + ";" + price + ";" + entry.getValue() + "\n"); // Write name instead of ID
             }
         }
     }
@@ -171,5 +177,23 @@ public class Main {
             }
         }
         return 0;
+    }
+
+    /**
+     * Helper method to get the product name by product ID.
+     * 
+     * @param productId The ID of the product.
+     * @return The name of the product.
+     * @throws IOException If an error occurs while reading the product information.
+     */
+    private static String getProductName(String productId) throws IOException {
+        List<String> productsLines = Files.readAllLines(Paths.get(PRODUCTS_FILE));
+        for (String productLine : productsLines) {
+            String[] productParts = productLine.split(";");
+            if (productParts[0].equals(productId)) {
+                return productParts[1]; // Return the product name
+            }
+        }
+        return "Unknown Product"; // Fallback if product not found
     }
 }

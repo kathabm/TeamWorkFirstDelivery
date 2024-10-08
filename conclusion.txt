@@ -1,0 +1,50 @@
+Generacion y clasificacion de datos
+
+
+
+
+Estudiantes Subgrupo 09
+Erika Katherin Barbosa Mayorga 
+Andres Felipe Bermudez Sanabria
+Ivan Javier Gachancipa Manrique
+Juan Pablo Parra Baron
+
+
+
+Institucion Universitaria Politecnico Grancolombiano Facultad De Ingenieria, Diseno E Innovacion
+
+
+
+Conceptos Fundamentales De Programacion
+
+
+
+Docente: Roa Diego
+
+
+
+
+07 de Octubre, 2024
+
+
+
+
+CONCLUSIONES
+
+1.	Lo aprendido durante el desarrollo del proyecto. 
+Durante el desarrollo de este proyecto, me sumergi en el fascinante mundo de Java. Este lenguaje, robusto y lleno de posibilidades, me ha permitido comprender conceptos fundamentales, como el manejo de variables y la logica detras de su declaracion. Aprender a usar condicionales y ciclos de control ha sido un verdadero punto de inflexion; ahora puedo dirigir el flujo de un programa con mayor confianza. Cada vez que decidia entre un ciclo for o while, sentia que estaba tomando decisiones que impactaban el resultado final.
+
+El trabajo con listas y la programacion orientada a objetos me han ensenado como organizar y almacenar informacion de manera eficiente. Ademas, experimentar con metodos, tanto los que Java proporciona como los que puedo crear, me ha permitido optimizar mi codigo y evitar redundancias, lo que me da una gran satisfaccion.
+
+2.	Posibles aplicaciones en su vida profesional de las destrezas y conocimientos adquiridos y practicados durante el desarrollo del proyecto. 
+Las habilidades que he adquirido en este proyecto son herramientas valiosas que llevare conmigo en mi vida profesional. He aprendido que desarrollar software no es solo cuestion de escribir codigo; implica un proceso metodico que abarca desde la recoleccion de informacion hasta la creacion de bases de datos. Esta comprension me empodera para abordar problemas y convertir necesidades en soluciones concretas.
+
+Lo que mas me emociona es la versatilidad de estas destrezas. Ya sea en un entorno laboral, enfrentando pruebas de conocimientos en Java, o trabajando de forma independiente, se que puedo aplicar lo que he aprendido para crear aplicaciones que realmente marquen la diferencia.
+
+3.	Las dificultades presentadas durante el desarrollo del proyecto. 
+
+No todo ha sido sencillo; al principio, enfrentarme a la integracion de Java con GitHub fue un verdadero reto. Clonar el proyecto y asegurarme de que todos en el equipo pudieran contribuir y ver los cambios requeria paciencia y persistencia. Afortunadamente, la comunidad en linea es increiblemente generosa, y encontre muchos recursos que me guiaron a traves de esos obstaculos.
+
+Ademas, la comunicacion dentro del grupo a veces era complicada. Hubo momentos de desacuerdo sobre como abordar ciertas tareas, pero cada desafio fue una oportunidad de aprender a escuchar y valorar las opiniones de los demas. La programacion es un camino lleno de prueba y error, y cada pequeno obstaculo se convirtio en una leccion valiosa que me ayudo a crecer tanto profesional como personalmente.
+
+En resumen, este proyecto no solo ha sido una experiencia de aprendizaje tecnico, sino tambien un viaje de autodescubrimiento y desarrollo personal. Estoy emocionado por lo que viene y por seguir explorando las infinitas posibilidades que la programacion tiene para ofrecer.
